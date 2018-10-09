@@ -19,15 +19,14 @@
 
 package com.mpush.client.user;
 
-import com.mpush.api.spi.common.MQClientFactory;
-import com.mpush.api.spi.common.MQMessageReceiver;
-import com.mpush.tools.Utils;
-import com.mpush.tools.config.ConfigTools;
+import static com.mpush.api.event.Topics.OFFLINE_CHANNEL;
+import static com.mpush.api.event.Topics.ONLINE_CHANNEL;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.mpush.api.event.Topics.OFFLINE_CHANNEL;
-import static com.mpush.api.event.Topics.ONLINE_CHANNEL;
+import com.mpush.api.spi.common.MQClientFactory;
+import com.mpush.api.spi.common.MQMessageReceiver;
 
 /**
  * Created by ohun on 2016/1/4.

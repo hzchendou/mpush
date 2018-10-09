@@ -34,6 +34,11 @@ import static com.mpush.api.srd.ServiceNames.ATTR_PUBLIC_IP;
  */
 public class ServerNodes {
 
+    /**
+     * 普通连接节点
+     *
+     * @return
+     */
     public static ServiceNode cs() {
         CommonServiceNode node = new CommonServiceNode();
         node.setHost(ConfigTools.getConnectServerRegisterIp());
@@ -44,6 +49,11 @@ public class ServerNodes {
         return node;
     }
 
+    /**
+     * WebSock服务节点
+     *
+     * @return
+     */
     public static ServiceNode ws() {
         CommonServiceNode node = new CommonServiceNode();
         node.setHost(ConfigTools.getConnectServerRegisterIp());
@@ -54,6 +64,11 @@ public class ServerNodes {
         return node;
     }
 
+    /**
+     * 网关服务节点
+     *
+     * @return
+     */
     public static ServiceNode gs() {
         CommonServiceNode node = new CommonServiceNode();
         node.setHost(ConfigTools.getGatewayServerRegisterIp());

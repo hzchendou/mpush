@@ -67,27 +67,32 @@ public final class MPushServer implements MPushContext {
 
     private MonitorService monitorService;
 
-
+    /**
+     * mpush服务组件初始化
+     */
     public MPushServer() {
         connServerNode = ServerNodes.cs();
         gatewayServerNode = ServerNodes.gs();
         websocketServerNode = ServerNodes.ws();
 
+        //创建监控服务
         monitorService = new MonitorService();
         EventBus.create(monitorService.getThreadPoolManager().getEventBusExecutor());
 
+        //可重用会话管理器
         reusableSessionManager = new ReusableSessionManager();
 
+        //推送中心
         pushCenter = new PushCenter(this);
-
+        //路由中心
         routerCenter = new RouterCenter(this);
-
+        //连接服务
         connectionServer = new ConnectionServer(this);
-
+        //websocket服务
         websocketServer = new WebsocketServer(this);
-
+        //中央管理服务
         adminServer = new AdminServer(this);
-
+        //使用TCP或者时UDP协议网关
         if (tcpGateway()) {
             gatewayServer = new GatewayServer(this);
         } else {

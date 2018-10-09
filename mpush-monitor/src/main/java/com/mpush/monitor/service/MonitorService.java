@@ -35,10 +35,8 @@ import java.util.concurrent.TimeUnit;
 
 public class MonitorService extends BaseService implements Monitor, Runnable {
 
-    private static final int FIRST_DUMP_JSTACK_LOAD_AVG = 2,
-            SECOND_DUMP_JSTACK_LOAD_AVG = 4,
-            THIRD_DUMP_JSTACK_LOAD_AVG = 6,
-            FIRST_DUMP_JMAP_LOAD_AVG = 4;
+    private static final int FIRST_DUMP_JSTACK_LOAD_AVG = 2, SECOND_DUMP_JSTACK_LOAD_AVG = 4,
+            THIRD_DUMP_JSTACK_LOAD_AVG = 6, FIRST_DUMP_JMAP_LOAD_AVG = 4;
 
     private static final String dumpLogDir = CC.mp.monitor.dump_dir;
     private static final boolean dumpEnabled = CC.mp.monitor.dump_stack;
@@ -55,7 +53,10 @@ public class MonitorService extends BaseService implements Monitor, Runnable {
     private final ThreadPoolManager threadPoolManager;
 
     public MonitorService() {
+        //各个线程池管理
         threadPoolManager = new ThreadPoolManager();
+
+        //监控数据收集
         collector = new ResultCollector(threadPoolManager);
     }
 
@@ -77,7 +78,8 @@ public class MonitorService extends BaseService implements Monitor, Runnable {
             try {
                 TimeUnit.SECONDS.sleep(dumpPeriod);
             } catch (InterruptedException e) {
-                if (isRunning()) stop();
+                if (isRunning())
+                    stop();
             }
         }
     }
@@ -94,7 +96,8 @@ public class MonitorService extends BaseService implements Monitor, Runnable {
 
     @Override
     protected void doStop(Listener listener) throws Throwable {
-        if (thread != null && thread.isAlive()) thread.interrupt();
+        if (thread != null && thread.isAlive())
+            thread.interrupt();
         listener.onSuccess();
     }
 
